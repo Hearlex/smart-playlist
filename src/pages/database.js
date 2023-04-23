@@ -10,13 +10,16 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import Home from '@mui/icons-material/Home';
 import { Typography } from '@mui/joy';
 import Chip from '@mui/joy/Chip';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import Grid from '@mui/joy/Grid';
 import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
+import MusicUpload from '../components/musicUpload';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import MusicListItem from '@/components/musicListItem';
 
 const imagesrc = "https://i.scdn.co/image/ab6761610000e5eb920dc1f617550de8388f368e"
 
-export default function Database() {
+export default function Database({musicList}) {
     return (
         <>
             <Link href="/">
@@ -29,83 +32,69 @@ export default function Database() {
                     size='lg'
                     variant='outlined'
                 >
-                    { Array.from({ length: 20 }).map((_, index) => (
-                    <ListItem
-                    variant="outlined"
-                    sx={{ mb: 1 }}
-                    >
-                        <ListItemButton>
-                            <ListItemDecorator><Home /></ListItemDecorator>
-                            <ListItemContent>
-                            <Typography level="display1" sx={{ fontSize: 20, color: '#CCCCCC' }}>
-                                Radioactive: Imagine Dragons
-                                <Typography level="body" sx={{ fontSize: 20, color: '#000000' }}>
-                                <Chip
-                                    color="neutral"
-                                    disabled={false}
-                                    onClick={function(){}}
-                                    size="sm"
-                                    variant="soft"
-                                    sx={{ ml: 1, backgroundColor: '#CCCCCC' }}
-                                >
-                                    Rock
-                                </Chip>
-                                <Chip
-                                    color="neutral"
-                                    disabled={false}
-                                    onClick={function(){}}
-                                    size="sm"
-                                    variant="soft"
-                                    sx={{ ml: 1, backgroundColor: '#CCCCCC' }}
-                                >
-                                    Pop
-                                </Chip>
-                                <Chip
-                                    color="neutral"
-                                    disabled={false}
-                                    onClick={function(){}}
-                                    size="sm"
-                                    variant="soft"
-                                    sx={{ ml: 1, backgroundColor: '#CCCCCC' }}
-                                >
-                                    Fighting
-                                </Chip></Typography>
-                            </Typography>
-                            </ListItemContent>
-                            <KeyboardArrowRight />
-                        </ListItemButton>
-                    </ListItem>
-                    ))}
+                    { 
+                        musicList.length > 0 ?
+                        musicList.map((item, index) => (
+                            <MusicListItem id={item.id} artist={item.artist} title={item.title} tags={item.tags} action='remove'/>
+                        ))
+                        :
+                        <Typography variant="h4" sx={{color: '#CCCCCC'}}>
+                            No music in database
+                        </Typography>
+                    }
                 </List>
             </Card>
             <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', mt: 2}}>
-                <Grid container spacing={2}>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                        <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                        <Grid xs={3}>
-                            <Input />
-                        </Grid>
-                </Grid>
+                <MusicUpload />
             </Card>
         </>
     )
+}
+
+export async function getServerSideProps() {
+    const sqlite3 = require('sqlite3').verbose();
+
+    // open database
+    let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log('Connected to the file SQlite database.');
+    });
+
+    //gather music from database
+    
+    let sql = `SELECT * FROM music`;
+    let musicListPromise = new Promise((resolve, reject) => {
+        var musicList = [];
+        db.all(sql, [], (err, rows) => {
+            if (err) {
+                console.error(err.message);
+                return reject(err);
+            }
+            rows.forEach((row) => {
+                musicList.push({
+                    id: row.id,
+                    title: row.title,
+                    artist: row.artist,
+                    tags: row.tags,
+                });
+                //console.log(row.name);
+            });
+            return resolve(musicList);
+        });
+    });
+    
+    let musicList = await musicListPromise;
+    // close the database connection
+    db.close((err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
+    //console.log(musicList);
+    return {
+        props: {musicList},
+    }
 }

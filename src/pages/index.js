@@ -2,20 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-//import styles from '@/styles/Home.module.css'
 
 import MainMenu from '@/components/mainMenu'
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
 import Stack from '@mui/joy/Stack';
 import MusicCard from '@/components/musicCard';
 import Button from '@mui/joy/Button';
-
-
+import Footer from '@/components/footer';
+import { Grid } from '@mui/joy'
+import Header from '@/components/header'
+import Sheet from '@mui/joy/Sheet'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Main() {
+export default function Main({playList, footerInstance}) {
     return (
       <>
         <Head>
@@ -23,166 +23,93 @@ export default function Main() {
           <meta name="description" content="This is the main menu for the smart playlist generator application" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Public+Sans&display=swap"
           />
         </Head>
-        <main className='styles.container'>
-          <CssVarsProvider>
-            <MainMenu>
-            <Stack
-              direction="row"
-              justifyContent="space-around"
-              alignItems="center"
-              spacing={0}
-            >
+        <Header />
+        <div style={{position: 'fixed', width: '100%', top: '20em'}}>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid xs={4}>
               <MusicCard />
+            </Grid>
+            <Grid xs={4}>
               <Stack spacing={6}>
-              <Link href="/player">
-                <Button
-                  color="neutral"
-                  onClick={function(){}}
-                  size="lg"
-                  variant="soft"
-                  sx={{ width: 800, height: 100, mt: 2, mb: 2 }}
-                >
-                  Request & Player
-                </Button>
-              </Link>
-              <Link href="/database">
-                <Button
-                  color="neutral"
-                  onClick={function(){}}
-                  size="lg"
-                  variant="soft"
-                  sx={{ width: 800, height: 100, mt: 2, mb: 2 }}
-                >
-                  Music Database
-                </Button>
+                <Link href="/player">
+                  <Button
+                    color="neutral"
+                    size="lg"
+                    variant="soft"
+                    sx={{ width: '40vw', height: '12vh', backgroundColor: 'rgb(24, 24, 24)' }}
+                  >
+                    Request & Player
+                  </Button>
+                </Link>
+                <Link href="/database">
+                  <Button
+                    color="neutral"
+                    size="lg"
+                    variant="soft"
+                    sx={{ width: '40vw', height: '12vh', backgroundColor: 'rgb(24, 24, 24)' }}
+                  >
+                    Music Database
+                  </Button>
               </Link>
               </Stack>
-            </Stack>
-            </MainMenu>
-          </CssVarsProvider>
-        </main>
+            </Grid>
+          </Grid>
+        </div>
       </>
     )
 }
 
-export function Home() {
-  return (
-    <>
-      <Head>
-        <title>Main Menu</title>
-        <meta name="description" content="This is the main menu for the smart playlist generator application" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+export async function getServerSideProps() {
+  const sqlite3 = require('sqlite3').verbose();
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
+  // open database
+  let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+      return console.error(err.message);
+  }
+  console.log('Connected to the file SQlite database.');
+  });
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-    </>
-  )
+  //gather music from database
+  
+  let sql = `SELECT * FROM playlist INNER JOIN music ON playlist.id = music.id`;
+  let playListPromise = new Promise((resolve, reject) => {
+      var playList = [];
+      db.all(sql, [], (err, rows) => {
+          if (err) {
+              console.error(err.message);
+              return reject(err);
+          }
+          rows.forEach((row) => {
+              playList.push({
+                  order: row.listOrder,
+                  title: row.title,
+                  artist: row.artist,
+                  tags: row.tags,
+                  path: row.path,
+              });
+              //console.log(row.name);
+          });
+          return resolve(playList);
+      });
+  });
+  
+  let playList = await playListPromise;
+  // close the database connection
+  db.close((err) => {
+      if (err) {
+          return console.error(err.message);
+      }
+      console.log('Close the database connection.');
+  });
+  console.log(playList);
+  return {
+      props: {playList},
+  }
 }

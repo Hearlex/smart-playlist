@@ -4,12 +4,12 @@ import Sheet from '@mui/joy/Sheet'
 
 export default function Header() {
     return (
-        <Sheet elevation={10} sx={{
-            position: 'absolute',
-            top: 0,
+        <Sheet sx={{
+            position: 'fixed',
             left: 0,
+            top: 0,
             width: '100%',
-            height: '7em',
+            height: '14vh',
             backgroundColor: 'rgb(24, 24, 24)',
         }}
         >
