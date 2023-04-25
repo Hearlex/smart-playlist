@@ -49,8 +49,8 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 print('Loading model...')
-model = laion_clap.CLAP_Module(enable_fusion=True)
-model.load_ckpt()
+model = laion_clap.CLAP_Module(enable_fusion=False, amodel='HTSAT-base')
+model.load_ckpt('model/music_audioset_epoch_15_esc_90.14.pt')
 
 print('Loading annoy...')
 t = AnnoyIndex(512, 'angular')
