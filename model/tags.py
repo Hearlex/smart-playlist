@@ -1,18 +1,18 @@
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel, AutoTokenizer, AutoModel
 import torch
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained('bert-base-uncased')
+tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-125m')
+model = AutoModel.from_pretrained('EleutherAI/gpt-neo-125m')
 
-def encode_bert(text):
+def encode_with_model(text):
     '''
-    Creates BERT embeddings for a given text.
+    Creates GPT-NEO embeddings for a given text.
     
     Paramteres:
         text (str): The text to be encoded
         
     Returns:
-        torch.tensor: The BERT embeddings for the text
+        torch.tensor: The GPT-NEO embeddings for the text
     '''
     encoded_text = tokenizer(text, return_tensors='pt')
     output = model(**encoded_text)
@@ -44,8 +44,8 @@ def calc_similarity(prompt, keywords, scale=10):
     Returns:
         keyValues (dict): A dictionary containing the keywords and their similarity to the prompt, scaled by the scale parameter
     '''
-    prompt_embed = encode_bert(prompt)
-    keyword_embeds = [encode_bert(keyword) for keyword in keywords]
+    prompt_embed = encode_with_model(prompt)
+    keyword_embeds = [encode_with_model(keyword) for keyword in keywords]
     cossims = [cosine_similarity(prompt_embed, keyword_embed)*scale for keyword_embed in keyword_embeds]
     keyValues = dict(zip(keywords, cossims))
     keyValues = {k: v for k, v in sorted(keyValues.items(), key=lambda item: item[1], reverse=True)}
@@ -54,7 +54,7 @@ def calc_similarity(prompt, keywords, scale=10):
 # This is just a test to see if the code works
 if __name__ == "__main__":
     text = "Calm and relaxing piano music"
-    test_text = encode_bert(text)
+    test_text = encode_with_model(text)
     print("\n",text)
 
     keywords = [
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         "Depresso", "Screaming men with eyeliner", "Feminine rage", "Meme", "Meme music"
     ]
     
-    embeds = [encode_bert(x) for x in keywords]
+    embeds = [encode_with_model(x) for x in keywords]
 
     """ dotsims = [dotsim(test_text, x) for x in embeds]
     dotsims_without_norm = [dotsim_without_norm(test_text, x) for x in embeds]
