@@ -21,10 +21,21 @@ import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import Footer from '@/components/footer';
 import Slider from '@mui/joy/Slider';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { useEffect } from 'react';
+
 
 export default function Player({playList, musicLength, refreshPlayer}) {
+    useEffect(() => {
+        Loading.init({svgColor: '#FFFFFF',});
+    })
     const [prompt, setPrompt] = React.useState('');
     const [songCount, setSongCount] = React.useState(1);
+    const [ratio, setRatio] = React.useState(5);
+
+    const handleRatioChange = (event, value) => {
+        setRatio(value);
+    };
 
     const handlePromptChange = (event) => {
         setPrompt(event.target.value);
@@ -35,11 +46,12 @@ export default function Player({playList, musicLength, refreshPlayer}) {
     };
 
     const handlePrompt = async (event) => {
+        Loading.pulse('Generating playlist...')
         const data = {
           prompt: prompt,
           songCount: songCount,
-          musicScale: 10,
-          keyScale: 4
+          musicScale: 10-ratio,
+          keyScale: ratio,
         }
     
         // Send the data to the server in JSON format.
@@ -116,6 +128,9 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                     />
                     </Grid>
                     <Grid xs={9}>
+                        <Typography sx={{mx: '1em'}}>
+                            Number of songs:
+                        </Typography>
                         <Slider
                             color="neutral"
                             disabled={false}
@@ -141,8 +156,30 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                         Generate Playlist
                     </Button>
                     </Grid>
+                    <Grid xs={12}>
+                        <Typography sx={{mx: '35%'}}>
+                            Strength ratio: Music / Tags
+                        </Typography>
+                        <Slider
+                            color="neutral"
+                            disabled={false}
+                            marks
+                            orientation="horizontal"
+                            size="lg"
+                            valueLabelDisplay="off"
+                            variant="plain"
+                            sx={{ mx: '3em', width: '90%', textColor: '#FFFFFF' }}
+                            min={0}
+                            max={10}
+                            steps={1}
+                            defaultValue={5}
+                            onChangeCommitted={handleRatioChange}
+                            track={'inverted'}
+                            marks={[{value: 0, label: 'Music'}, {value: 10, label: 'Tags'}]}
+                        />
+                    </Grid>
                 </Grid>
-                <Card variant="outlined" sx={{ width: 1000, backgroundColor: 'rgb(24, 24, 24)' }}>
+                <Card variant="outlined" sx={{ width: 1000, backgroundColor: 'rgb(24, 24, 24)', maxHeight: '40em', overflow: 'auto' }}>
                     <List
                         size='lg'
                         variant='outlined'

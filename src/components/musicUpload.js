@@ -6,10 +6,13 @@ import React from 'react';
 import { Alert } from '@mui/joy/Alert';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { FormHelperText } from '@mui/joy';
+import eventBus from "./eventBus"
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export default function MusicUpload() {
     const handleRebuildRequest = async (event) => {
       event.preventDefault();
+      eventBus.dispatch("rebuildRequest", null);
 
       // API endpoint where we send form data.
       const endpoint = process.env.API_URL+'/tree/build';
@@ -25,13 +28,14 @@ export default function MusicUpload() {
         return;
       }
       Notify.success('Rebuild Successful', {position: 'left-bottom'});
-
+      Loading.remove(1000);
     }
 
     // Handles the submit event on form submit.
     const handleSubmit = async (event) => {
       // Stop the form from submitting and refreshing the page.
       event.preventDefault();
+      Loading.pulse('Uploading music...')
       
       var reader = new FileReader();
       let file = event.target.file.files[0];

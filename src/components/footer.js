@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Inter } from 'next/font/google'
 import Sheet from '@mui/joy/Sheet'
 import dynamic from 'next/dynamic';
@@ -21,10 +21,10 @@ export default function Footer({}) {
     /* const ReactHowler = dynamic(() => import('react-howler'), {
         ssr: false
     }); */
-
+    
     const path = useRouter().pathname;
     const [playList, setPlayList] = useState([]);
-
+    
     const playlist = []
     playList.map((item) => {
         playlist.push({
@@ -32,15 +32,16 @@ export default function Footer({}) {
             src: item.path,
         })
     })
-
+    
     const updatePlaylist = async (setPlayList) => {
         const res = await fetch('/api/listPlaylist', {
             method: 'GET',
         });
-
+        
         const result = await res.json();
         setPlayList(result.playList);
     }
+    useEffect(() => {updatePlaylist(setPlayList)}, []);
 
     return (
         <Sheet elevation={10} sx={{
@@ -55,12 +56,12 @@ export default function Footer({}) {
         }}
         >
             <Grid container spacing={2}>
-                <Grid xs={2}>
+                {/* <Grid xs={2}>
                     <IconButton variant="outlined" onClick={() => updatePlaylist(setPlayList)} sx={{my:'1em', mx: '1em'}}>
                         <RefreshIcon />
                     </IconButton>
-                </Grid>
-                <Grid xs={8}>
+                </Grid> */}
+                <Grid xs={12}>
                     <Sheet variant="soft" sx={{mx: '15%', my: '2em', height: '40%', backgroundColor: 'rgb(24, 24, 24)'}}>
                         {/* <ReactHowler
                             src={['music/intheend.wav']}
@@ -78,9 +79,9 @@ export default function Footer({}) {
                         />
                         }
                     </Sheet>
-                </Grid>
+                </Grid>{/* 
                 <Grid xs={2}>
-                </Grid>
+                </Grid> */}
             </Grid>
         </Sheet>
     )

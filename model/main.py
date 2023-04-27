@@ -85,11 +85,14 @@ def getTagScoreOfMusic(id, keyvalues):
     statement = select(Music.tags).where(Music.id == id)
     tags = session.execute(statement).all()[0][0]
     if ',' in tags:
-        tags = tags.split(',')
+        tags = tags.replace(' ', '').split(',')
     
     for tag in tags:
         if tag in keyvalues:
             score += keyvalues[tag]
+    
+    # Scale the score to an about correct value between [-1,1] then Normalize to [-100,100]
+    score = score*100
             
     return score
 
@@ -159,17 +162,18 @@ def get_playlist():
     text_embed = model.get_text_embedding(x=[prompt,""])[0,:]
     ids, distances = t.get_nns_by_vector(text_embed, songCount, include_distances=True)
     # distances is between [0,2] so we need to move it to [-1,1], and then scale it
-    distances = [(x-1)*musicScale for x in distances]
+    distances = [(x-1)*100 for x in distances]
     
     clapScores = dict(zip(ids, distances))
     #print("clapScores: ", clapScores)
     
     keywords = getAllKeywords()
-    keyvalues = calc_similarity(prompt, keywords, scale=keyScale)
+    keyvalues = calc_similarity(prompt, keywords)
     
     playlist = {}
     for id in ids:
-        playlist[id] = getTagScoreOfMusic(id, keyvalues)+clapScores[id]
+        scaled_score = (keyScale/10)*getTagScoreOfMusic(id, keyvalues)+(musicScale/10)*clapScores[id]
+        playlist[id] = scaled_score
     
     # Sort by score
     playlist = {k: v for k, v in sorted(playlist.items(), key=lambda item: item[1], reverse=True)}

@@ -30,7 +30,7 @@ def cosine_similarity(a, b):
     '''
     return torch.nn.functional.cosine_similarity(a, b, dim=0).item()
 
-def calc_similarity(prompt, keywords, scale=10):
+def calc_similarity(prompt, keywords):
     '''
     This function is used to calculate the similarity between a prompt and a list of keywords
     The keywords are encoded using BERT and the similarity is calculated using cosine similarity
@@ -39,14 +39,13 @@ def calc_similarity(prompt, keywords, scale=10):
     Parameters:
         prompt (str): The prompt to be compared to the keywords
         keywords (list): A list of keywords to be compared to the prompt
-        scale (int): A scale parameter used to scale the similarity values, defaults to 10
     
     Returns:
-        keyValues (dict): A dictionary containing the keywords and their similarity to the prompt, scaled by the scale parameter
+        keyValues (dict): A dictionary containing the keywords and their similarity to the prompt
     '''
     prompt_embed = encode_with_model(prompt)
     keyword_embeds = [encode_with_model(keyword) for keyword in keywords]
-    cossims = [cosine_similarity(prompt_embed, keyword_embed)*scale for keyword_embed in keyword_embeds]
+    cossims = [cosine_similarity(prompt_embed, keyword_embed) for keyword_embed in keyword_embeds]
     keyValues = dict(zip(keywords, cossims))
     keyValues = {k: v for k, v in sorted(keyValues.items(), key=lambda item: item[1], reverse=True)}
     return keyValues

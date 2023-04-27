@@ -16,18 +16,28 @@ import Button from '@mui/joy/Button';
 import MusicUpload from '../components/musicUpload';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import MusicListItem from '@/components/musicListItem';
-
-const imagesrc = "https://i.scdn.co/image/ab6761610000e5eb920dc1f617550de8388f368e"
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import dynamic from 'next/dynamic';
+import eventBus from '../components/eventBus';
+import { useEffect } from 'react';
 
 export default function Database({musicList}) {
+    useEffect(() => {
+        eventBus.on('rebuildRequest', (data) => {
+            Loading.pulse('Rebuilding trees...')
+        })
+
+        Loading.init({svgColor: '#FFFFFF',});
+    })
+
     return (
-        <>
+        <div class='database'>
             <Link href="/">
                 <IconButton variant="plain" size="lg" sx={{color: 'white'}}>
                     <KeyboardReturnIcon />
                 </IconButton>
             </Link>
-            <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', maxHeight: 700, overflow: 'auto'}}>
+            <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', maxHeight: 680, overflow: 'auto'}}>
                 <List
                     size='lg'
                     variant='outlined'
@@ -47,7 +57,7 @@ export default function Database({musicList}) {
             <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', mt: 2}}>
                 <MusicUpload />
             </Card>
-        </>
+        </div>
     )
 }
 
