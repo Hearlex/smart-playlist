@@ -191,7 +191,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                     >
                         { playList.length > 0 ?
                             playList.map((item, index) => (
-                                <MusicListItem id={item.id} artist={item.artist} title={item.title} tags={item.tags} order={index} action='choose'/>
+                                <MusicListItem key={index} id={item.id} artist={item.artist} title={item.title} tags={item.tags} order={index} action='choose'/>
                             ))
                             :
                             <Typography variant="h4" sx={{color: '#CCCCCC'}}>

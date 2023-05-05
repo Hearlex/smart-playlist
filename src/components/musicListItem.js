@@ -73,10 +73,10 @@ export default function MusicListItem(props) {
             endAction={
               props.action === 'remove' &&
                 [
-                  <IconButton aria-label="Modify" size="sm" color="warning" sx={{mx: 1}} onClick={handleModify}>
+                  <IconButton key="modify" aria-label="Modify" size="sm" color="warning" sx={{mx: 1}} onClick={handleModify}>
                       <EditIcon />
                   </IconButton>,
-                  <IconButton aria-label="Delete" size="sm" color="danger" sx={{mx: 1}} onClick={handleDelete}>
+                  <IconButton key="delete" aria-label="Delete" size="sm" color="danger" sx={{mx: 1}} onClick={handleDelete}>
                       <Delete />
                   </IconButton>
                 ]
