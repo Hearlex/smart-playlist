@@ -8,14 +8,18 @@ import { CssVarsProvider, ThemeProvider } from '@mui/joy/styles';
 import { getInitColorSchemeScript } from '@mui/joy/styles';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
-
 export default function App({ Component, pageProps, playList }) {
  /*  const [footerInstance, setFooterInstance] = useState(null); */
   let footerInstance = React.useRef(null);
   const [refreshPlayer, setRefreshPlayer] = useState(null);
+  var theme = createTheme();
 
+  theme.typography.h2 = {
+    fontSize: '2.5vw',
+  };
+  theme.typography.h4 = {
+    fontSize: '1.5vw',
+  };
   return (
       <CssVarsProvider defaultMode='dark'>
         {getInitColorSchemeScript()}

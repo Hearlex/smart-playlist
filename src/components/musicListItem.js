@@ -8,8 +8,14 @@ import Home from '@mui/icons-material/Home';
 import IconButton from '@mui/joy/IconButton';
 import Delete from '@mui/icons-material/Delete';
 import Router from 'next/router';
+import eventBus from '../components/eventBus';
+
 
 export default function MusicListItem(props) {
+    const setPlayerToSong = (event) => {
+        eventBus.dispatch('setPlayerToSong', {id: props.order});
+    }
+
     const handleDelete = async (event) => {
         const data = {
           id: props.id,
@@ -57,6 +63,7 @@ export default function MusicListItem(props) {
                     <Delete />
                 </IconButton>
             }
+            onClick={(props.action === 'choose' && setPlayerToSong) || function(){}}
         >
             <ListItemButton>
                 <ListItemDecorator><Home /></ListItemDecorator>

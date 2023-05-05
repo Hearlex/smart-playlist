@@ -37,18 +37,18 @@ export default function Database({musicList}) {
                     <KeyboardReturnIcon />
                 </IconButton>
             </Link>
-            <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', maxHeight: 680, overflow: 'auto'}}>
+            <Card variant="outlined" sx={{backgroundColor: 'rgb(24, 24, 24)', height: '70svh', overflow: 'auto'}}>
                 <List
                     size='lg'
                     variant='outlined'
-                >
+                    >
                     { 
                         musicList.length > 0 ?
                         musicList.map((item, index) => (
                             <MusicListItem id={item.id} artist={item.artist} title={item.title} tags={item.tags} action='remove'/>
-                        ))
-                        :
-                        <Typography variant="h4" sx={{color: '#CCCCCC'}}>
+                            ))
+                            :
+                            <Typography variant="h4" sx={{color: '#CCCCCC'}}>
                             No music in database
                         </Typography>
                     }

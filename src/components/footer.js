@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useCallback, useEffect, useRef } from 'react';
 import { Inter } from 'next/font/google'
 import Sheet from '@mui/joy/Sheet'
 import dynamic from 'next/dynamic';
@@ -9,21 +9,43 @@ import { IconButton } from '@mui/joy';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Grid from '@mui/joy/Grid';
 import { useRouter } from 'next/router';
+import eventBus from '../components/eventBus';
+import ReactDOM from 'react-dom';
+import Audio from 'react-audioplayer';
 
 let audioInstance = null;
 
     
-const Audio = dynamic(() => import('react-audioplayer'), {
+/* const Audio = dynamic(() => import('react-audioplayer'), {
     ssr: false
-});
+}); */
 
 export default function Footer({}) {
     /* const ReactHowler = dynamic(() => import('react-howler'), {
         ssr: false
     }); */
-    
+    var song = -1;
+    var audio = useRef(null);
+    useEffect(() => {updatePlaylist(setPlayList)}, []);
+    useEffect(() => {
+        eventBus.on('setPlayerToSong', (index) => {
+            setPlayerToSong(index);
+        });
+    });
+    useCallback()
     const path = useRouter().pathname;
     const [playList, setPlayList] = useState([]);
+    
+    
+    setInterval(() => {
+        if (audio.current != null) {
+            if (audio.current.state.currentPlaylistPos != song) {
+                console.log('song changed', audio.current.state.currentPlaylistPos, song)
+                song = audio.current.state.currentPlaylistPos;
+                eventBus.dispatch('musicChanged', playList[audio.current.state.currentPlaylistPos])
+            }
+        }
+    }, 1000);
     
     const playlist = []
     playList.map((item) => {
@@ -32,6 +54,18 @@ export default function Footer({}) {
             src: item.path,
         })
     })
+
+    const audioLoaded = () => {
+        console.log('audio loaded')
+        eventBus.dispatch('musicChanged', playList[audio.current.state.currentPlaylistPos])
+    }
+
+    const setPlayerToSong = (index) => {
+        if (audio != null) {
+            audio.current.state.currentPlaylistPos = index.id;
+            audio.current.loadSrc();
+        }
+    }
     
     const updatePlaylist = async (setPlayList) => {
         const res = await fetch('/api/listPlaylist', {
@@ -41,7 +75,6 @@ export default function Footer({}) {
         const result = await res.json();
         setPlayList(result.playList);
     }
-    useEffect(() => {updatePlaylist(setPlayList)}, []);
 
     return (
         <Sheet elevation={10} sx={{
@@ -49,9 +82,9 @@ export default function Footer({}) {
             bottom: 0,
             left:0,
             width: '100%',
-            height: '10em',
+            height: '20vh',
             backgroundColor: 'rgb(24, 24, 24)',
-            overflow: 'hidden',
+            overflow: 'none',
             display: path == '/database' ? 'none' : 'block',
         }}
         >
@@ -62,11 +95,7 @@ export default function Footer({}) {
                     </IconButton>
                 </Grid> */}
                 <Grid xs={12}>
-                    <Sheet variant="soft" sx={{mx: '15%', my: '2em', height: '40%', backgroundColor: 'rgb(24, 24, 24)'}}>
-                        {/* <ReactHowler
-                            src={['music/intheend.wav']}
-                            playing={true}
-                        /> */}
+                    <Sheet variant="soft" sx={{mx: '15%', my: '2em', backgroundColor: 'rgb(24, 24, 24)'}}>
                         {
                         playList.length > 0
                         &&
@@ -76,6 +105,7 @@ export default function Footer({}) {
                             fullPlayer={false}
                             playlist={playlist}
                             color='rgb(80, 80, 80)'
+                            ref={audio}
                         />
                         }
                     </Sheet>

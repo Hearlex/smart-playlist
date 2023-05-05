@@ -92,7 +92,7 @@ def getTagScoreOfMusic(id, keyvalues):
             score += keyvalues[tag]
     
     # Scale the score to an about correct value between [-1,1] then Normalize to [-100,100]
-    score = score*100
+    score = (score/len(tags))*100
             
     return score
 
@@ -157,8 +157,7 @@ def get_playlist():
         return 'OK', 200
     prompt = request.json['prompt']
     songCount = request.json['songCount']
-    musicScale = request.json['musicScale']
-    keyScale = request.json['keyScale']
+    scale = request.json['scale']
     text_embed = model.get_text_embedding(x=[prompt,""])[0,:]
     ids, distances = t.get_nns_by_vector(text_embed, songCount, include_distances=True)
     # distances is between [0,2] so we need to move it to [-1,1], and then scale it
@@ -172,7 +171,7 @@ def get_playlist():
     
     playlist = {}
     for id in ids:
-        scaled_score = (keyScale/10)*getTagScoreOfMusic(id, keyvalues)+(musicScale/10)*clapScores[id]
+        scaled_score = (scale/10)*getTagScoreOfMusic(id, keyvalues)+((10-scale)/10)*clapScores[id]
         playlist[id] = scaled_score
     
     # Sort by score

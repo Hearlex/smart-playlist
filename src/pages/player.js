@@ -19,7 +19,6 @@ import MusicListItem from '@/components/musicListItem';
 import React from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import Footer from '@/components/footer';
 import Slider from '@mui/joy/Slider';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { useEffect } from 'react';
@@ -50,8 +49,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
         const data = {
           prompt: prompt,
           songCount: songCount,
-          musicScale: 10-ratio,
-          keyScale: ratio,
+          scale: ratio,
         }
     
         // Send the data to the server in JSON format.
@@ -124,7 +122,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                         name='prompt'
                         value={prompt}
                         onChange={handlePromptChange}
-                        sx={{ height: 300, backgroundColor: 'rgb(24, 24, 24)', color: '#CCCCCC' }}
+                        sx={{ height: '30vh', backgroundColor: 'rgb(24, 24, 24)', color: '#CCCCCC' }}
                     />
                     </Grid>
                     <Grid xs={9}>
@@ -163,7 +161,6 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                         <Slider
                             color="neutral"
                             disabled={false}
-                            marks
                             orientation="horizontal"
                             size="lg"
                             valueLabelDisplay="off"
@@ -179,14 +176,14 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                         />
                     </Grid>
                 </Grid>
-                <Card variant="outlined" sx={{ width: 1000, backgroundColor: 'rgb(24, 24, 24)', maxHeight: '40em', overflow: 'auto' }}>
+                <Card variant="outlined" sx={{ width: 1000, backgroundColor: 'rgb(24, 24, 24)', maxHeight: '60vh', overflow: 'auto' }}>
                     <List
                         size='lg'
                         variant='outlined'
                     >
                         { playList.length > 0 ?
                             playList.map((item, index) => (
-                                <MusicListItem id={item.id} artist={item.artist} title={item.title} tags={item.tags} action='none'/>
+                                <MusicListItem id={item.id} artist={item.artist} title={item.title} tags={item.tags} order={index} action='choose'/>
                             ))
                             :
                             <Typography variant="h4" sx={{color: '#CCCCCC'}}>

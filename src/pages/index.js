@@ -8,7 +8,6 @@ import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import MusicCard from '@/components/musicCard';
 import Button from '@mui/joy/Button';
-import Footer from '@/components/footer';
 import { Grid } from '@mui/joy'
 import Header from '@/components/header'
 import Sheet from '@mui/joy/Sheet'
@@ -30,7 +29,7 @@ export default function Main({playList, footerInstance}) {
           />
         </Head>
         <Header />
-        <div style={{position: 'fixed', width: '100%', top: '20em'}}>
+        <div style={{position: 'fixed', width: '100%', top: '35vh'}}>
           <Grid container alignItems="center" justifyContent="center">
             <Grid xs={4}>
               <MusicCard />
