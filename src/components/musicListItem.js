@@ -9,11 +9,24 @@ import IconButton from '@mui/joy/IconButton';
 import Delete from '@mui/icons-material/Delete';
 import Router from 'next/router';
 import eventBus from '../components/eventBus';
-
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function MusicListItem(props) {
     const setPlayerToSong = (event) => {
         eventBus.dispatch('setPlayerToSong', {id: props.order});
+    }
+
+    const handleModify = async (event) => {
+        const data = {
+          id: props.id,
+          title: props.title,
+          artist: props.artist,
+          tags: props.tags,
+        }
+
+        // Open a modal to modify the song data.
+        eventBus.dispatch('openModifyModal', data);
+
     }
 
     const handleDelete = async (event) => {
@@ -59,9 +72,14 @@ export default function MusicListItem(props) {
             key={props.id}
             endAction={
               props.action === 'remove' &&
-                <IconButton aria-label="Delete" size="sm" color="danger" onClick={handleDelete}>
-                    <Delete />
-                </IconButton>
+                [
+                  <IconButton aria-label="Modify" size="sm" color="warning" sx={{mx: 1}} onClick={handleModify}>
+                      <EditIcon />
+                  </IconButton>,
+                  <IconButton aria-label="Delete" size="sm" color="danger" sx={{mx: 1}} onClick={handleDelete}>
+                      <Delete />
+                  </IconButton>
+                ]
             }
             onClick={(props.action === 'choose' && setPlayerToSong) || function(){}}
         >
