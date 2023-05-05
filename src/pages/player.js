@@ -16,17 +16,20 @@ import { Typography } from '@mui/joy';
 import Chip from '@mui/joy/Chip';
 import Button from '@mui/joy/Button';
 import MusicListItem from '@/components/musicListItem';
-import React from 'react';
+import React, { use } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import Slider from '@mui/joy/Slider';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { useEffect } from 'react';
-
+import useLocalStorage from '@/components/useLocalStorage';
 
 export default function Player({playList, musicLength, refreshPlayer}) {
     useEffect(() => {
         Loading.init({svgColor: '#FFFFFF',});
+        setPrompt(useLocalStorage.retrieve('prompt') || '');
+        setSongCount(useLocalStorage.retrieve('songCount') || 1);
+        setRatio(useLocalStorage.retrieve('ratio') || 5);
     })
     const [prompt, setPrompt] = React.useState('');
     const [songCount, setSongCount] = React.useState(1);
@@ -34,14 +37,17 @@ export default function Player({playList, musicLength, refreshPlayer}) {
 
     const handleRatioChange = (event, value) => {
         setRatio(value);
+        useLocalStorage.store('ratio', value);
     };
 
     const handlePromptChange = (event) => {
         setPrompt(event.target.value);
+        useLocalStorage.store('prompt', event.target.value);
     };
 
     const handleSongCountChange = (event, value) => {
         setSongCount(value);
+        useLocalStorage.store('songCount', value);
     };
 
     const handlePrompt = async (event) => {
@@ -141,6 +147,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                             min={1}
                             max={musicLength}
                             onChangeCommitted={handleSongCountChange}
+                            value={songCount}
                         />
                     </Grid>
                     <Grid xs={3}>
@@ -173,6 +180,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                             onChangeCommitted={handleRatioChange}
                             track={'inverted'}
                             marks={[{value: 0, label: 'Music'}, {value: 10, label: 'Tags'}]}
+                            value={ratio}
                         />
                     </Grid>
                 </Grid>
