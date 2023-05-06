@@ -1,0 +1,19 @@
+<mxfile host="app.diagrams.net" modified="2023-05-06T10:54:26.293Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="Ho6NK-F83jkFXopm2LGe" version="21.2.9" type="github">
+  <diagram name="1 oldal" id="VYu41FljyXw0WLE9OvVC">
+    <mxGraphModel dx="1393" dy="758" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PfGuzQunGMzcVHf2y_Xq-1" value="&lt;b style=&quot;border-color: var(--border-color); font-size: 24px;&quot;&gt;Python Szerver&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="240" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="PfGuzQunGMzcVHf2y_Xq-2" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;Next.js Web Applikáció&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;glass=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="40" width="400" height="630" as="geometry" />
+        </mxCell>
+        <mxCell id="PfGuzQunGMzcVHf2y_Xq-3" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;Sqlite&lt;/b&gt;&lt;/span&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="120" height="160" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
