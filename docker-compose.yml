@@ -1,0 +1,18 @@
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - db:/app/db
+  
+  model:
+    build: ./model
+    ports:
+      - "5000:5000"
+    volumes:
+      - db:/model/db
+
+volumes:
+  db:

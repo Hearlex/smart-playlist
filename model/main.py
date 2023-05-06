@@ -207,6 +207,3 @@ def hello_world():
     Can be used from a browser by going to http://localhost:5000/
     '''
     return 'Hello, World!'
-
-if __name__ == '__main__':
-    app.run(host= '0.0.0.0', port=5000, debug=False)

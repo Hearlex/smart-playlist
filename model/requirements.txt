@@ -1,0 +1,9 @@
+annoy==1.17.1
+Flask==2.2.3
+Flask_Cors==3.0.10
+laion_clap==1.1.4
+SQLAlchemy==2.0.7
+torch==2.0.0
+torchvision
+torchaudio
+transformers==4.27.1

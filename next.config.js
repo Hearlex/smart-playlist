@@ -10,7 +10,7 @@ const nextConfig = {
     ]
   },
   env: {
-    API_URL: 'http://axenet.tplinkdns.com:5000',
+    API_URL: 'http://localhost:5000',
   }
   
 }
