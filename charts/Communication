@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-06T20:41:20.886Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="st7BVPBpbXj6qedxpV6W" version="21.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-06T20:46:55.367Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="h3y1p7EzvKp8v-tXKLAw" version="21.2.9" type="github">
   <diagram name="1 oldal" id="ecqZoSdzNFflEPlUPr96">
     <mxGraphModel dx="1639" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -16,7 +16,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-7" value="SQLite" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
           <mxGeometry x="560" y="110" width="100" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-8" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-8" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="260.06" y="620" as="sourcePoint" />
             <mxPoint x="360.06" y="620" as="targetPoint" />
@@ -25,7 +25,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-9" value="Upload Music" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-10" value="" style="endArrow=classic;html=1;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="rX7lPZ5TSM9Tr3CIu1RM-7">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-10" value="" style="endArrow=classic;html=1;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=block;startFill=0;" edge="1" parent="1" target="rX7lPZ5TSM9Tr3CIu1RM-7">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="270.06" y="314" as="sourcePoint" />
             <mxPoint x="540.06" y="200" as="targetPoint" />
@@ -37,7 +37,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-11" value="Upload Music" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-12" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-12" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="505.06" y="670" as="sourcePoint" />
             <mxPoint x="280.06" y="444" as="targetPoint" />
@@ -55,7 +55,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-15" value="Modify Music" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-16" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-16" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="505.06" y="670" as="sourcePoint" />
             <mxPoint x="280.06" y="444" as="targetPoint" />
@@ -64,7 +64,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-17" value="Delete Music" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-16">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-18" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=37.5;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryPerimeter=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-4" target="rX7lPZ5TSM9Tr3CIu1RM-7">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-18" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=37.5;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryPerimeter=0;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-4" target="rX7lPZ5TSM9Tr3CIu1RM-7">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="505.06" y="700" as="sourcePoint" />
             <mxPoint x="220.06" y="444" as="targetPoint" />
@@ -91,7 +91,7 @@
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-23" value="Update Playlist" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-24" value="" style="endArrow=classic;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.145;entryY=0;entryDx=0;entryDy=4.35;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryPerimeter=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-4" target="rX7lPZ5TSM9Tr3CIu1RM-7">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-24" value="" style="endArrow=classic;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.145;entryY=0;entryDx=0;entryDy=4.35;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;entryPerimeter=0;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-4" target="rX7lPZ5TSM9Tr3CIu1RM-7">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="820.06" y="414" as="sourcePoint" />
             <mxPoint x="400.06" y="414" as="targetPoint" />
