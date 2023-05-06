@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-06T20:05:08.588Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="33XOaxcvSUhERfsJIKNp" version="21.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-06T20:41:20.886Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="st7BVPBpbXj6qedxpV6W" version="21.2.9" type="github">
   <diagram name="1 oldal" id="ecqZoSdzNFflEPlUPr96">
     <mxGraphModel dx="1639" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -149,14 +149,16 @@
             <mxPoint y="47" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-35" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-5">
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-35" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;startArrow=block;startFill=0;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-5">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="745.06" y="640" as="sourcePoint" />
             <mxPoint x="880.06" y="444" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-36" value="Build Trees" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-35">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-36" value="Build Trees&lt;br&gt;(Full - Request | Hollow - Answer)" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;" connectable="0" vertex="1" parent="rX7lPZ5TSM9Tr3CIu1RM-35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="-129" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="rX7lPZ5TSM9Tr3CIu1RM-37" value="" style="endArrow=block;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;rounded=0;elbow=vertical;edgeStyle=orthogonalEdgeStyle;dashed=1;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="rX7lPZ5TSM9Tr3CIu1RM-3" target="rX7lPZ5TSM9Tr3CIu1RM-4">
           <mxGeometry relative="1" as="geometry">
