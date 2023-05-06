@@ -64,7 +64,7 @@ export default async function handler(req, res) {
             }
             else {
                 console.log('No path or file');
-                res.status(400).json({ title: 'John Doe' })
+                res.status(400).json({ message: 'Error during file upload.' })
             }
         });
     });

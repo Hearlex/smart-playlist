@@ -147,8 +147,7 @@ def get_playlist():
     Parameters:
         prompt (str): The prompt for the playlist
         songCount (int): The number of songs requested
-        musicScale (float): The scale of the music score
-        keyScale (float): The scale of the keywords score or tags score (tags of the music)
+        scale (float): The scale of the CLAP score or keywords score (tags of the music) up to 10, 0 means only CLAP score, 10 means only keywords score
         
     Returns:
         playlist (dict): A dictionary of music ids and their scores, the scores are the sum of the scaled clap score and the scaled keywords score
