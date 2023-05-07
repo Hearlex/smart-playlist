@@ -18,11 +18,6 @@ def encode_with_model(text):
     output = model(**encoded_text)
     return torch.mean(output.last_hidden_state, dim=1).flatten()
 
-def dotsim(a, b):
-    return (torch.dot(a, b) / (torch.norm(a) * torch.norm(b))).item()
-
-def dotsim_without_norm(a, b):
-    return (torch.dot(a, b)).item()
 
 def cosine_similarity(a, b):
     '''
@@ -71,17 +66,6 @@ if __name__ == "__main__":
     ]
     
     embeds = [encode_with_model(x) for x in keywords]
-
-    """ dotsims = [dotsim(test_text, x) for x in embeds]
-    dotsims_without_norm = [dotsim_without_norm(test_text, x) for x in embeds]
-    cosine_similaritys = [cosine_similarity(test_text, x) for x in embeds]
-
-    print("\n Dot product similarity with normalization")
-    print(dict(zip(keywords, dotsims)))
-    print("\n Dot product similarity without normalization")
-    print(dict(zip(keywords, dotsims_without_norm)))
-    print("\n Cosine similarity")
-    print(dict(zip(keywords, cosine_similaritys))) """
     
     cossims = [cosine_similarity(test_text, x)*10 for x in embeds]
     keyValues = dict(zip(keywords, cossims))

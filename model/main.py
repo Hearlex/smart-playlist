@@ -61,7 +61,7 @@ if os.path.exists('./db/music.ann'):
 
 # Functions
 
-def getMusicDataFromDatabase():
+def get_music_data_from_database():
     '''
     This function is used to get all the music data from the database
     Then it is used in other functions
@@ -70,7 +70,7 @@ def getMusicDataFromDatabase():
     statement = select(Music)
     return session.scalars(statement)
 
-def getTagScoreOfMusic(id, keyvalues):
+def get_tag_score_of_music(id, keyvalues):
     '''
     Creates a score for a music based on the tags it has
     The higher the score, the more relevant the music is to the prompt
@@ -78,6 +78,9 @@ def getTagScoreOfMusic(id, keyvalues):
     Parameters:
         id (int): The id of the music
         keyvalues (dict): A dictionary of keywords and their scores in this search
+        
+    Returns:
+        score (float): The score of the music
     '''
     score = 0
     
@@ -97,12 +100,12 @@ def getTagScoreOfMusic(id, keyvalues):
     return score
 
 @app.route('/keywords', methods=['GET'])
-def getAllKeywords():
+def get_all_keywords():
     '''
     Returns a list of all the keywords in the database used as tags for the music
     '''
     keywords = []
-    md = getMusicDataFromDatabase().all()
+    md = get_music_data_from_database().all()
     
     [[keywords.append(y) for y in x.tags.split(',')] for x in md]
     return sorted(set(keywords))
@@ -112,7 +115,7 @@ def get_music_list():
     '''
     Returns a list of all the music in the database
     '''
-    md = [x.as_dict() for x in getMusicDataFromDatabase().all()]
+    md = [x.as_dict() for x in get_music_data_from_database().all()]
     return md
 
 @app.route('/tree/build', methods=['POST'])
@@ -165,12 +168,12 @@ def get_playlist():
     clapScores = dict(zip(ids, distances))
     #print("clapScores: ", clapScores)
     
-    keywords = getAllKeywords()
+    keywords = get_all_keywords()
     keyvalues = calc_similarity(prompt, keywords)
     
     playlist = {}
     for id in ids:
-        scaled_score = (scale/10)*getTagScoreOfMusic(id, keyvalues)+((10-scale)/10)*clapScores[id]
+        scaled_score = (scale/10)*get_tag_score_of_music(id, keyvalues)+((10-scale)/10)*clapScores[id]
         playlist[id] = scaled_score
     
     # Sort by score

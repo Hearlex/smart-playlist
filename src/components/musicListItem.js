@@ -4,7 +4,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import { Typography } from '@mui/joy';
 import Chip from '@mui/joy/Chip';
-import Home from '@mui/icons-material/Home';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import IconButton from '@mui/joy/IconButton';
 import Delete from '@mui/icons-material/Delete';
 import Router from 'next/router';
@@ -84,7 +84,7 @@ export default function MusicListItem(props) {
             onClick={(props.action === 'choose' && setPlayerToSong) || function(){}}
         >
             <ListItemButton>
-                <ListItemDecorator><Home /></ListItemDecorator>
+                <ListItemDecorator><MusicNoteIcon /></ListItemDecorator>
                 <ListItemContent>
                 <Typography level="display1" sx={{ fontSize: 20, color: '#CCCCCC' }}>
                     {props.artist}: {props.title}
