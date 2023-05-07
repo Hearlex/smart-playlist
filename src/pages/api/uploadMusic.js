@@ -36,7 +36,7 @@ export default async function handler(req, res) {
                 fs.writeFileSync(path, music);
 
                 // open database
-                let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE, (err) => {
+                let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_CREATE, (err) => {
                     if (err) {
                         return console.error(err.message);
                     }
