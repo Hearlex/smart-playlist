@@ -1,0 +1,69 @@
+<mxfile host="app.diagrams.net" modified="2023-05-07T11:32:11.647Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 OPR/97.0.0.0" etag="nZl3-IAvMhLuUnIdwabS" version="21.2.9" type="github">
+  <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
+    <mxGraphModel dx="1639" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="800" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-1" value="get_music_data_from_database()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-2" value="get_tag_score_of_music(id: int, keyvalues: dict)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="560" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.793;entryY=-0.018;entryDx=0;entryDy=0;entryPerimeter=0;shape=flexArrow;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-24" target="KxgXaDG1DJFcyEZFzMEs-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-24" value="get_all_keywords()&lt;br&gt;[GET: /keywords]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="280" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;shape=flexArrow;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-25" target="KxgXaDG1DJFcyEZFzMEs-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-25" value="build_tree()&lt;br&gt;[POST: /tree/build]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=flexArrow;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-26" target="KxgXaDG1DJFcyEZFzMEs-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-26" value="get_music_list()&lt;br&gt;[GET: /musiclist]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=flexArrow;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-27" target="KxgXaDG1DJFcyEZFzMEs-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=flexArrow;startArrow=none;startFill=0;dashed=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-27" target="KxgXaDG1DJFcyEZFzMEs-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-27" value="get_playlist()&lt;br&gt;[POST/OPTIONS: /playlist]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-28" value="get_playlist_with_names()&lt;br&gt;[POST: /playlist/names]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-29" value="hello_world()&lt;br&gt;[GET: /]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-30" value="" style="endArrow=block;startArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeWidth=1;shape=flexArrow;startFill=0;endFill=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-28" target="KxgXaDG1DJFcyEZFzMEs-26">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="390" y="460" as="sourcePoint" />
+            <mxPoint x="490" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-31" value="calc_similarity(prompt, keywords)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="280" y="640" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shape=flexArrow;startArrow=none;startFill=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KxgXaDG1DJFcyEZFzMEs-27" target="KxgXaDG1DJFcyEZFzMEs-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="450" as="sourcePoint" />
+            <mxPoint x="410" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KxgXaDG1DJFcyEZFzMEs-39" value="Flask/Main Python" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="760" height="590" as="geometry">
+            <mxRectangle x="20" y="10" width="150" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

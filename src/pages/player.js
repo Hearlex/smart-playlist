@@ -35,17 +35,17 @@ export default function Player({playList, musicLength, refreshPlayer}) {
     const [songCount, setSongCount] = React.useState(1);
     const [ratio, setRatio] = React.useState(5);
 
-    const handleRatioChange = (event, value) => {
+    const handleRatioChange = async (event, value) => {
         setRatio(value);
         useLocalStorage.store('ratio', value);
     };
 
-    const handlePromptChange = (event) => {
+    const handlePromptChange = async (event) => {
         setPrompt(event.target.value);
         useLocalStorage.store('prompt', event.target.value);
     };
 
-    const handleSongCountChange = (event, value) => {
+    const handleSongCountChange = async (event, value) => {
         setSongCount(value);
         useLocalStorage.store('songCount', value);
     };

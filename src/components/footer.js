@@ -13,17 +13,8 @@ import eventBus from '../components/eventBus';
 import ReactDOM from 'react-dom';
 import Audio from 'react-audioplayer';
 
-let audioInstance = null;
-
-    
-/* const Audio = dynamic(() => import('react-audioplayer'), {
-    ssr: false
-}); */
 
 export default function Footer({}) {
-    /* const ReactHowler = dynamic(() => import('react-howler'), {
-        ssr: false
-    }); */
     var song = -1;
     var audio = useRef(null);
     useEffect(() => {updatePlaylist(setPlayList)}, []);
@@ -47,18 +38,13 @@ export default function Footer({}) {
         }
     }, 1000);
     
-    const playlist = []
+    var tempplaylist = []
     playList.map((item) => {
-        playlist.push({
+        tempplaylist.push({
             name: item.title,
             src: item.path,
         })
     })
-
-    const audioLoaded = () => {
-        console.log('audio loaded')
-        eventBus.dispatch('musicChanged', playList[audio.current.state.currentPlaylistPos])
-    }
 
     const setPlayerToSong = (index) => {
         if (audio != null) {
@@ -67,7 +53,7 @@ export default function Footer({}) {
         }
     }
     
-    const updatePlaylist = async (setPlayList) => {
+    const updatePlaylist = async () => {
         const res = await fetch('/api/listPlaylist', {
             method: 'GET',
         });
@@ -89,11 +75,6 @@ export default function Footer({}) {
         }}
         >
             <Grid container spacing={2}>
-                {/* <Grid xs={2}>
-                    <IconButton variant="outlined" onClick={() => updatePlaylist(setPlayList)} sx={{my:'1em', mx: '1em'}}>
-                        <RefreshIcon />
-                    </IconButton>
-                </Grid> */}
                 <Grid xs={12}>
                     <Sheet variant="soft" sx={{mx: '15%', my: '2em', backgroundColor: 'rgb(24, 24, 24)'}}>
                         {
@@ -103,15 +84,13 @@ export default function Footer({}) {
                             width={'100%'}
                             height={'1000'}
                             fullPlayer={false}
-                            playlist={playlist}
+                            playlist={tempplaylist}
                             color='rgb(80, 80, 80)'
                             ref={audio}
                         />
                         }
                     </Sheet>
-                </Grid>{/* 
-                <Grid xs={2}>
-                </Grid> */}
+                </Grid>
             </Grid>
         </Sheet>
     )

@@ -2,15 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-
-import MainMenu from '@/components/mainMenu'
 import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import MusicCard from '@/components/musicCard';
 import Button from '@mui/joy/Button';
 import { Grid } from '@mui/joy'
 import Header from '@/components/header'
-import Sheet from '@mui/joy/Sheet'
 
 const inter = Inter({ subsets: ['latin'] })
 
