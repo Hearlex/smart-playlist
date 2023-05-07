@@ -11,8 +11,8 @@ const nextConfig = {
   },
   env: {
     API_URL: 'http://localhost:5000',
-  }
-  
+  },
+  output: 'standalone',
 }
 
 module.exports = nextConfig

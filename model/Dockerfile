@@ -2,7 +2,8 @@ FROM python:3.10-slim-buster
 
 WORKDIR /model
 
-COPY music_audioset_epoch_15_esc_90.14.pt *.py ./
+COPY music_audioset_epoch_15_esc_90.14.pt ./model/
+COPY *.py ./
 
 COPY requirements.txt ./
 
@@ -13,6 +14,9 @@ apt-get -y install --reinstall build-essential
 
 RUN pip install --upgrade pip && \
 pip install -r requirements.txt
+
+RUN mkdir db
+RUN chmod 777 db
 
 EXPOSE 5000
 

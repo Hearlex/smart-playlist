@@ -4,12 +4,27 @@ export default async function handler(req, res) {
     const sqlite3 = require('sqlite3').verbose();
 
     // open database
-    let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_CREATE, (err) => {
+    let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE | sqlite3.OPEN_FULLMUTEX, (err) => {
     if (err) {
         return console.error(err.message);
     }
     console.log('Connected to the file SQlite database.');
     });
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS music (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        artist TEXT NOT NULL,
+        title TEXT NOT NULL,
+        tags TEXT NOT NULL,
+        path TEXT NOT NULL UNIQUE
+    )`);
+    
+    db.run(`
+        CREATE TABLE IF NOT EXISTS playlist (
+        id INTEGER PRIMARY KEY,
+        listOrder INTEGER
+    )`);
 
     //gather music from database
     
