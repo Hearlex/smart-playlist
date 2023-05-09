@@ -20,12 +20,6 @@ export default async function handler(req, res) {
 
     try {
 
-        body.forEach(data => {
-            if (!data.id || !data.order) {
-                throw new Error('Invalid data');
-            }
-        });
-
         // open database
         let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE | sqlite3.OPEN_FULLMUTEX, (err) => {
         if (err) {
