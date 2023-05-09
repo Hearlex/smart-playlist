@@ -39,7 +39,7 @@ export default function handler(req, res) {
             fs.unlink("public/"+row.path, (err) => {
                 if (err) {
                     console.error(err)
-                    return
+                    throw err
                 }
                 //file removed
             });
