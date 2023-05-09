@@ -38,3 +38,4 @@ __pycache__/
 # large files
 *.ann
 *.db
+*.pt
