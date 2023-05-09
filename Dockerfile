@@ -49,7 +49,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 RUN mkdir db
+RUN mkdir public/music
 RUN chmod 777 db
+RUN chmod 777 public/music
 
 USER nextjs
 

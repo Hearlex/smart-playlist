@@ -10,7 +10,9 @@ COPY requirements.txt ./
 RUN apt-get update && \
 apt-get -y install gcc && \
 apt-get -y install g++ && \
-apt-get -y install --reinstall build-essential
+apt-get -y install --reinstall build-essential && \
+apt-get -y install ffmpeg && \
+apt-get -y install libsndfile1
 
 RUN pip install --upgrade pip && \
 pip install -r requirements.txt
