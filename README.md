@@ -1,38 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Smart Playlist generator system powered by GPT_NEO and LAION_CLAP, and using Spotify Annoy for Aproximated Nearest Neighbors Search.
+The purpose of this project is to create custom playlists from a prompt in a matter of seconds.
+
+The base of this project was created as the dissertation of Alex Armand Hegedüs studying at Eötvös Loránd University.
 
 ## Getting Started
 
-First, run the development server:
+First clone this repo.
+Then you need to download the model for CLAP from here: [music_audioset_epoch_15_esc_90.14.pt](https://huggingface.co/lukewys/laion_clap/blob/main/music_audioset_epoch_15_esc_90.14.pt).
+Copy the downloaded file to the model folder.
+
+Then run the following commands from the main folder
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm install
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open up another terminal and install Python if needed. Python 3.10.9 is preferred.
+Write the following commands from the main folder:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+pip install -r model/requirements.txt
+flask --app ./model/main run --host=0.0.0.0
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+With both servers running open [http://localhost:3000](http://localhost:3000) with your browser to access the User Interface.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Here you can use the database page to upload new music, or refresh the trees used during generation with the new music data.
+You need to write the artist and title of the song. The tags are used for fine-tuning the meaning of the songs, and you can give multiple tags by seperating them with commas. The file must be a ".wav".
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+With the Generate Playlist Page you can write a prompt, select the number of songs and choose which AI to use during ordering the songs.
+The Music side uses CLAP to analyze the song and tries to find the closest match to the prompt using that.
+The Tags side uses GPT-NEO to analyze the similarity between the prompt and the keywords of the songs.
+Click Generate to create your playlist, then use the music player to access your playlist.
