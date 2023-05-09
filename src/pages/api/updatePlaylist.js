@@ -1,11 +1,31 @@
 
 
 export default async function handler(req, res) {
-    const body = req.body;
+    var body = req.body;
+    
+    // This is a workaround for the fact that the body is not parsed as JSON when the request is sent from the python tests for the limitations of requests lib.
+    try {
+        body = JSON.parse(req.body);
+    } catch (error) {
+        if (error instanceof SyntaxError) {
+            body = req.body;
+        } else {
+            console.log(error);
+            return res.status(500).json({ message: 'Error' })
+        }
+    }
+    console.log('body: ', body);
 
     const sqlite3 = require('sqlite3').verbose();
 
     try {
+
+        body.forEach(data => {
+            if (!data.id || !data.order) {
+                throw new Error('Invalid data');
+            }
+        });
+
         // open database
         let db = new sqlite3.Database('./db/test.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE | sqlite3.OPEN_FULLMUTEX, (err) => {
         if (err) {
@@ -50,7 +70,10 @@ export default async function handler(req, res) {
         });
     } catch (error) {
         console.log(error);
+        console.log('Error');
+        return res.status(500).json({ message: 'Error' })
     }
 
+    console.log('Success')
     return res.status(200).json({ message: 'Success' })
 }

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "start flask --app ./model/main run --host=0.0.0.0 && next dev",
+    "test": "python model/test.py",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

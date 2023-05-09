@@ -124,8 +124,11 @@ def build_tree():
     Builds the annoy tree from the database
     Based on the number of items in the database, it will decide how many trees to use.
     '''
+    print('Unloading annoy tree if exists...')
     t.unload()
     t.unbuild()
+    
+    print('Getting music list...')
     md = get_music_list()
     
     try:
@@ -133,7 +136,9 @@ def build_tree():
             # Temporary fix - music['path'] is not valid as it is a relative path in public
             t.add_item(music['id'], model.get_audio_embedding_from_filelist(x = ['public/'+music['path']])[0,:])
         
+        print('Building annoy tree...')
         t.build(math.ceil(len(md)*trees_ratio), n_jobs=-1)
+        print('Saving to index file')
         t.save('./db/music.ann')
         return 'Success', 200
     except Exception as e:
