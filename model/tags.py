@@ -14,6 +14,9 @@ def encode_with_model(text):
     Returns:
         torch.tensor: The GPT-NEO embeddings for the text
     '''
+    if text == "":
+        return torch.zeros(768)
+    
     encoded_text = tokenizer(text, return_tensors='pt')
     output = model(**encoded_text)
     return torch.mean(output.last_hidden_state, dim=1).flatten()
@@ -47,7 +50,7 @@ def calc_similarity(prompt, keywords):
 
 # This is just a test to see if the code works
 if __name__ == "__main__":
-    text = "Calm and relaxing piano music"
+    text = "Calming Mystic Forest"
     test_text = encode_with_model(text)
     print("\n",text)
 

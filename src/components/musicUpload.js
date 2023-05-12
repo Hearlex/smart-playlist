@@ -25,6 +25,7 @@ export default function MusicUpload() {
       const response = await fetch(endpoint, options);
       if (response.status != 200) {
         Notify.failure('Rebuild Failed', {position: 'left-bottom'});
+        Loading.remove(1000);
         return;
       }
       Notify.success('Rebuild Successful', {position: 'left-bottom'});
@@ -66,9 +67,11 @@ export default function MusicUpload() {
       // If server returns the name submitted, that means the form works.
       const result = await response.json();
       if (response.status != 200) {
+        Notify.failure('Upload Failed', {position: 'left-bottom'});
         alert(result);
         return;
       }
+      Notify.success('Upload Successful', {position: 'left-bottom'});
       //alert(`Uploaded with name: ${response}`);
       Router.reload();
       

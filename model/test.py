@@ -6,6 +6,7 @@ import itertools
 import main
 import tags
 import torch
+import time
 
 class TestMainAPI(unittest.TestCase):
     def setUp(self):
@@ -215,6 +216,7 @@ class TestPlaylistAPI(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         
         # Test listPlaylist and whether the playlist is updated
+        time.sleep(1)
         url = f"{self.base_url}/api/listPlaylist"
         response = requests.get(url)
         self.assertEqual(response.status_code, 200)

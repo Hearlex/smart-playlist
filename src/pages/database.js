@@ -64,6 +64,12 @@ export default function Database({musicList}) {
     
         // Send the form data to our forms API on Vercel and get a response.
         const response = await fetch(endpoint, options);
+
+        if (response.status != 200) {
+            Notify.failure('Modification Failed', {position: 'left-bottom'});
+            return;
+        }
+        Notify.success('Modification Successful', {position: 'left-bottom'});
     
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.

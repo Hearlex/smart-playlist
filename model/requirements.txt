@@ -7,3 +7,5 @@ torch==2.0.0
 torchvision
 torchaudio
 transformers==4.27.1
+cffi==1.15.1
+soundfile==0.12.1
