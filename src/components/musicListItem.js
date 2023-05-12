@@ -10,6 +10,7 @@ import Delete from '@mui/icons-material/Delete';
 import Router from 'next/router';
 import eventBus from '../components/eventBus';
 import EditIcon from '@mui/icons-material/Edit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default function MusicListItem(props) {
     const setPlayerToSong = (event) => {

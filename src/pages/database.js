@@ -26,6 +26,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import { useState } from 'react'; 
 import ModalClose from '@mui/joy/ModalClose';
 import Router from 'next/router';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export default function Database({musicList}) {
     const [open, setOpen] = useState(false);
