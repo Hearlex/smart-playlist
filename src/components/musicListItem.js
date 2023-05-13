@@ -78,7 +78,7 @@ export default function MusicListItem(props) {
             sx={{ mb: 1 }}
             key={props.id}
             endAction={
-              props.action === 'remove' &&
+              props.action === 'database' &&
                 [
                   <IconButton key="modify" aria-label="Modify" size="sm" color="warning" sx={{mx: 1}} onClick={handleModify}>
                       <EditIcon />
@@ -88,7 +88,7 @@ export default function MusicListItem(props) {
                   </IconButton>
                 ]
             }
-            onClick={(props.action === 'choose' && setPlayerToSong) || function(){}}
+            onClick={(props.action === 'playlist' && setPlayerToSong) || function(){}}
         >
             <ListItemButton>
                 <ListItemDecorator><MusicNoteIcon /></ListItemDecorator>

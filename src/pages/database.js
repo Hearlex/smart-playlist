@@ -140,7 +140,7 @@ export default function Database({musicList}) {
                     { 
                         musicList.length > 0 ?
                         musicList.map((item, index) => (
-                            <MusicListItem key={index} id={item.id} artist={item.artist} title={item.title} tags={item.tags} action='remove'/>
+                            <MusicListItem key={index} id={item.id} artist={item.artist} title={item.title} tags={item.tags} action='database'/>
                             ))
                             :
                             <Typography variant="h4" sx={{color: '#CCCCCC'}}>

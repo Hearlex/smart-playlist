@@ -29,11 +29,11 @@ export default function Player({playList, musicLength, refreshPlayer}) {
         Loading.init({svgColor: '#FFFFFF',});
         setPrompt(useLocalStorage.retrieve('prompt') || '');
         setSongCount(useLocalStorage.retrieve('songCount') || 1);
-        setRatio(useLocalStorage.retrieve('ratio') || 5);
+        setRatio(useLocalStorage.retrieve('ratio') || 6);
     })
     const [prompt, setPrompt] = React.useState('');
     const [songCount, setSongCount] = React.useState(1);
-    const [ratio, setRatio] = React.useState(5);
+    const [ratio, setRatio] = React.useState(6);
 
     const handleRatioChange = async (event, value) => {
         setRatio(value);
@@ -55,7 +55,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
         const data = {
           prompt: prompt,
           songCount: songCount,
-          scale: ratio,
+          scale: ratio-1,
         }
     
         // Send the data to the server in JSON format.
@@ -100,6 +100,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
         })
         
         console.log(refreshPlayer);
+        await new Promise(r => setTimeout(r, 2000));
         Router.reload();
       }
 
@@ -146,7 +147,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                             sx={{ mx: '1em', width: '90%' }}
                             min={1}
                             max={musicLength}
-                            onChangeCommitted={handleSongCountChange}
+                            onChange={handleSongCountChange}
                             value={songCount}
                         />
                     </Grid>
@@ -173,13 +174,13 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                             valueLabelDisplay="off"
                             variant="plain"
                             sx={{ mx: '3em', width: '90%', textColor: '#FFFFFF' }}
-                            min={0}
-                            max={10}
+                            min={1}
+                            max={11}
                             steps={1}
-                            defaultValue={5}
-                            onChangeCommitted={handleRatioChange}
+                            defaultValue={6}
+                            onChange={handleRatioChange}
                             track={'inverted'}
-                            marks={[{value: 0, label: 'Music'}, {value: 10, label: 'Tags'}]}
+                            marks={[{value: 1, label: 'Music'}, {value: 11, label: 'Tags'}]}
                             value={ratio}
                         />
                     </Grid>
@@ -191,7 +192,7 @@ export default function Player({playList, musicLength, refreshPlayer}) {
                     >
                         { playList.length > 0 ?
                             playList.map((item, index) => (
-                                <MusicListItem key={index} id={item.id} artist={item.artist} title={item.title} tags={item.tags} order={index} action='choose'/>
+                                <MusicListItem key={index} id={item.id} artist={item.artist} title={item.title} tags={item.tags} order={index} action='playlist'/>
                             ))
                             :
                             <Typography variant="h4" sx={{color: '#CCCCCC'}}>
