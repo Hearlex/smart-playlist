@@ -27,7 +27,6 @@ export default function MusicListItem(props) {
 
         // Open a modal to modify the song data.
         eventBus.dispatch('openModifyModal', data);
-
     }
 
     const handleDelete = async (event) => {
