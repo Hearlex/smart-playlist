@@ -99,7 +99,7 @@ export default function Database({musicList}) {
 
     return (
         <div class='database'>
-            <Modal open={open} onClose={() => setOpen(false)} size='lg' keepMounted>
+            <Modal id='modify-modal' open={open} onClose={() => setOpen(false)} size='lg' keepMounted>
                 <ModalDialog aria-labelledby="modify-modal-dialog" aria-describedby="A modal where you can modify the music information">
                     <ModalClose />
                     <Typography id="modify-modal-dialog" level="h2">
